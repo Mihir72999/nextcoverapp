@@ -130,11 +130,11 @@ export async function getStaticPaths(context) {
   console.log(datas)
   
   
-  const data = await fetch(`${process.env.PORT}/api/geproduct`)
+  const data = await fetch(`nextcoverapp-gg8d-aed5336bi-mihir72999.vercel.app/api/geproduct`)
 const moredata = await data.json()
 const paths = moredata.map((e)=>{
   return{
-    params:{product:e.name}
+    params:{product:`${e.name}`}
   }
 })
   return {
@@ -150,7 +150,7 @@ export async function getStaticProps({params}) {
  try{
   const name = params.product
   
-  const data = await fetch(`${process.env.PORT}/api/idproduct?name=${name}`)
+  const data = await fetch(`nextcoverapp-gg8d-aed5336bi-mihir72999.vercel.app/api/idproduct?name=${name}`)
  const moredata = await data.json()
 
   return {
