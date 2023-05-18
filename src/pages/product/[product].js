@@ -1,4 +1,4 @@
-'use client'
+
 import { Button, makeStyles, Typography } from '@material-ui/core'
 import { Add,Remove, ArrowDownward } from '@material-ui/icons'
 import Link from 'next/link'
@@ -11,6 +11,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import mongoose from 'mongoose'
+import Product from '../../../schema/product'
+
 const useStyle = makeStyles(()=>({
   App:{
     margin: '0 35%',
@@ -25,7 +28,9 @@ const useStyle = makeStyles(()=>({
 }))
 
 
-const product = ({moredata}) => {
+const product = ({moredata }) => {
+
+  console.log(moredata)
 const classes = useStyle()
   const {data , isFetching ,isError} = useGetproductQuery()
   const [qty , setQty] = useState(1)
@@ -47,7 +52,7 @@ const samsungs = data && data?.myItems?.samsung
 useEffect(()=>{
  
   setProgress(100)
-  },[])
+  },[100])
    
 if(isFetching){
  
@@ -125,37 +130,44 @@ const handleClick = (e) =>{
 }
 export async function getStaticPaths(context) { 
   try{
-  const datas = context.query
   
-  console.log(datas)
+    if(!mongoose.connections[0].readyState){
+      await mongoose.connect(process.env.MONGO_URI)
+    }
+
   
   
-  const data = await fetch(`nextcoverapp-k8quvzwy9-mihir72999.vercel.app.app/api/geproduct`)
-const moredata = await data.json()
-const paths = moredata.map((e)=>{
+  const data = await Product.find()
+  
+const paths = await data.map((e)=>{
+ 
   return{
     params:{product:`${e.name}`}
-  }
+  } 
 })
   return {
     paths,
-    fallback: true, // can also be true or 'blocking'
+    fallback: false, // can also be true or 'blocking'
   }
 }catch(error){
   console.log(error)
 }
+
 }
 
-export async function getStaticProps({params}) {
- try{
+export async function getStaticProps({params} ) {
+
+  try{
+    if(!mongoose.connections[0].readyState){
+      await mongoose.connect(process.env.MONGO_URI)
+    }
+
   const name = params.product
-  
-  const data = await fetch(`nextcoverapp-k8quvzwy9-mihir72999.vercel.app.app/api/idproduct?name=${name}`)
- const moredata = await data.json()
+  const moredata = await Product.findOne({name})
 
   return {
  
-    props: { moredata:moredata }
+    props: { moredata:JSON.parse(JSON.stringify(moredata)) }
     
   }
 }catch(error){
