@@ -6,11 +6,11 @@ import Navbar from './components/Navbar'
 
 export default function App({ Component, pageProps }) {
   return <>
-  <AppProvider>
-  <Provider store={store}>
+ <Provider store={store}>
   <Navbar/>
+   <AppProvider>
    <Component  {...pageProps} />
-   </Provider>
    </AppProvider>
+   </Provider>
     </>
 }
