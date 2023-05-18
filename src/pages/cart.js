@@ -21,7 +21,7 @@ const cart = () => {
     const dispatch = useDispatch()
     const deleteCart = (e) => {
         dispatch(deletedata(e))
-        const url = `http://localhost:3000/cart?deletedata=${e}`
+        const url = `https://nextcoverapp.vercel.app/cart?deletedata=${e}`
         window.location = url
         toast("your item deleted")
     }
