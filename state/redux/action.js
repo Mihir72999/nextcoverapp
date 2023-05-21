@@ -1,13 +1,29 @@
 
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
+
+const initialState = {
+  cart: typeof window !== 'undefined' && localStorage.getItem('cart')
+    ? JSON.parse(localStorage.getItem('cart'))
+    : []
+};
+
 const actionSlice = createSlice({
   name: 'action',
-  initialState: [],
+  initialState,
   reducers: {
     addProduct(state, action) {
-      state.push(action.payload)
+     const itemExist = state.cart.findIndex(e=>e.select === action.payload.select)
+     if(itemExist >= 0){
+      state.cart[itemExist].select += action.payload.select
+      toast.warn(`${action.payload.select} already exist`)
+     } 
+     else{
+       state.cart.push(action.payload)
+       toast.success("your item has been added in cart!")
+     }  
 
-      const data = state.reduce((item ,total)=>{
+      const data = state.cart.reduce((item ,total)=>{
         const {amount } = total
         item = item + amount 
         return item
@@ -16,8 +32,8 @@ const actionSlice = createSlice({
      
       try{
         
-        localStorage.setItem('cart', JSON.stringify(state))
-        localStorage.setItem('length', JSON.stringify(state.length))
+        localStorage.setItem('cart', JSON.stringify(state.cart))
+        
          localStorage.setItem('subtotal',JSON.stringify(data))
       
 
@@ -29,25 +45,18 @@ const actionSlice = createSlice({
     },
     deletedata(state, action) {
       
-      state = JSON.parse(localStorage.getItem('cart'))
-      const data = state.filter(item => item._id !== action.payload)
+         const data  =  state.cart.filter(item => item.select !== action.payload)
       const datas = data.reduce((item ,total)=>{
         const {amount } = total
         item = item + amount 
         return item
       },0)
- 
      
+      state.cart = data
       try{
-        localStorage.setItem('cart', JSON.stringify(data))
+        localStorage.setItem('cart', JSON.stringify(state.cart))
 
-        if (state.length > 0) {
-          localStorage.setItem('length', JSON.stringify(state.length - 1))
-  
-        } else {
-          localStorage.setItem('length', JSON.stringify(state.length))
-  
-        }
+       
         localStorage.setItem('subtotal',JSON.stringify(datas))
       
       
@@ -65,4 +74,4 @@ const actionSlice = createSlice({
 })
 
 export default actionSlice.reducer
-export const { addProduct, deletedata, addQuantity , removeQuantity } = actionSlice.actions
+export const { addProduct, deletedata } = actionSlice.actions
