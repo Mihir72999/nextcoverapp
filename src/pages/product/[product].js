@@ -1,7 +1,7 @@
 
-import { Button, makeStyles, Typography } from '@material-ui/core'
+import { Button, Typography , Link, Box, Breadcrumbs } from '@mui/material'
+
 import { Add,Remove, ArrowDownward } from '@material-ui/icons'
-import Link from 'next/link'
 import { useState ,useEffect } from 'react'
 import {useGetproductQuery} from '../../../state/redux/findproducts'
 import LoadingBar from 'react-top-loading-bar'
@@ -14,33 +14,19 @@ import Image from 'next/image'
 import mongoose from 'mongoose'
 import Product from '../../../schema/product'
 
-const useStyle = makeStyles(()=>({
-  App:{
-    margin: '0 35%',
-    borderRadius:'20px 20px 20px 20px',
-    background: "#c6e2ff",
-  
-  },
- Button:{
-  cursor:'pointer'
- }
-  
-}))
+
 
 
 const product = ({moredata }) => {
 
-  console.log(moredata)
-const classes = useStyle()
   const {data , isFetching ,isError} = useGetproductQuery()
   const [qty , setQty] = useState(1)
   const [getbrand ,setGetbrand] = useState([])
 const [progress, setProgress] = useState(0)
 const [select , setSelect] = useState('')
-console.log(select)
+
 const dispatch = useDispatch()
-const router = useRouter()
-const {product} = router.query
+
  const sam = data && Object.keys(data).map(e=>data[e]['samsung'])
  const s = sam?.map(e=>e.brand)
   const app = data && Object.keys(data).map(e=>data[e]['apple'])
@@ -50,7 +36,6 @@ const samsungs = data && data?.myItems?.samsung
 
 
 useEffect(()=>{
- 
   setProgress(100)
   },[100])
    
@@ -61,18 +46,19 @@ if(isFetching){
 if(isError){
   return <div>you have to bad request check your internet connection</div>
 }
-
-console.log(product)
 const {availableQty , image , name , price  , _id , brand} = moredata
 const amount = qty * price
 const handleClick = (e) =>{
-  if(select === ''){
+
+ 
+ 
+  if(select === ''  ){
   toast.warn('please select brand and model')
   }
   else{
     dispatch(addProduct(e))
     
-    toast("your item has been added in cart!")
+  
   }
 }
   return (
@@ -85,7 +71,15 @@ const handleClick = (e) =>{
           <Image height={600} width={400} className='productimg' src={moredata.image} alt={moredata.brandmodel}/></div>
       </div>
         <div className='font'>
-          <div className='d-none' ><Link  href='/'>HOME</Link> / {moredata.name}</div>
+        <Box mt={10}>
+            <Breadcrumbs area-label='breadcrumb'>
+                <Link underline="hover" href="/">Home</Link>
+                <Link underline="hover" href="/case-soft-silicon-cover">Case</Link>
+               
+                <Typography color='text.primary' >{moredata.name}</Typography> 
+            </Breadcrumbs>
+
+           </Box>
           <div><Typography className='text-m mt-10' variant='h5'>{moredata.name}</Typography></div>
        <div> <Typography className='' variant='h6'><del className='mx-10'>₹{moredata.price * 2 - 40}</del>₹{moredata.price}</Typography></div>
           <div className='free-delivery '><Typography variant='h5'>Order above upto ₹ 300.00 and get <span className='span'> FREE DELIVERY</span>  </Typography>
@@ -121,8 +115,8 @@ const handleClick = (e) =>{
       <ArrowDownward className='down'/>
 
       </div>
-      <div className="cart_add"><p>availableQty:<strong>{moredata.availableQty}</strong></p><div className='cart_add_Qty'><Remove className={classes.Button}   onClick={()=>setQty(qty > 1 ? qty - 1 : qty)}/><span>{qty}</span><Add className={classes.Button} onClick={()=>setQty(moredata.availableQty > qty ? qty + 1 : moredata.availableQty)} /></div></div>
-      <Button className={classes.App} onClick={()=>handleClick({ brand , image , amount , _id ,name, select ,availableQty , qty})}  color='primary'   variant='outlined'>Add To Cart</Button>
+      <div className="cart_add"><p>availableQty:<strong>{moredata.availableQty}</strong></p><div className='cart_add_Qty'><Remove style={{cursor:'pointer'}}   onClick={()=>setQty(qty > 1 ? qty - 1 : qty)}/><span>{qty}</span><Add style={{cursor:'pointer'}} onClick={()=>setQty(moredata.availableQty > qty ? qty + 1 : moredata.availableQty)} /></div></div>
+      <Button style={{ margin: '0 35%', borderRadius:'20px 20px 20px 20px',background: "#c6e2ff"}} onClick={()=>handleClick({ brand , image , amount , _id ,name, select ,availableQty , qty})}  color='primary'   variant='outlined'>Add To Cart</Button>
       </div>
       </div>
       </>
