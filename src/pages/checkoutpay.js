@@ -1,11 +1,10 @@
-
-'use client'
-import {  Button,Autocomplete, Stack, TextField, Typography, Card, Box, Grid ,Item, Container  } from '@mui/material'
-import Link from 'next/link'
+import { Link , Button,Autocomplete, Stack, TextField, Typography,  Box, Grid , Breadcrumbs, Paper  } from '@mui/material'
+import {useGetproductQuery} from '../../state/redux/findproducts'
 import LoadingBar from 'react-top-loading-bar'
 import React, { useState , useEffect } from 'react'
 import Script from 'next/script'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 
 
@@ -27,6 +26,13 @@ const checkoutpay = () => {
   const [progress, setProgress] = useState(0)
   const [datas ,setDatas] = useState([])
   const [detail , setDetail] = useState(initialState)
+  const {isFetching } = useGetproductQuery()
+  const {cart} = useSelector(state=>state.add)
+  const name =  cart.map(e=>e.name)
+  const amount =  cart.map(e=>e.amount)
+const qty = cart.map(e=>e.qty)
+const select = cart.map(e=>e.select)
+
 
   const handleChange = (e) =>{
     const name = e.target.name
@@ -75,24 +81,34 @@ const checkoutpay = () => {
     rzp1.open();
 
   }
-  
+  if(isFetching){
+    return <LoadingBar className='loadingbar' height={63}  color='#FFFFFF'  progress={progress} waitingTime={800} onLoaderFinished={() => setProgress(0)}/>
+    }
   return (
     <>
     
    
-    <LoadingBar className='loadingbar' height={63}  color='#FFFFFF'  progress={progress} waitingTime={800} onLoaderFinished={() => setProgress(0)}/>
    <Script src="https://checkout.razorpay.com/v1/checkout.js" />
    <div className='checkout_main'>
-     <div className='checkout'>
-    
-    <Link className='checkout_link' href='cart'> Carts</Link><Link  href='' >/{''} checkOut</Link> 
-    </div >
+  
+     <Box display='flex' justifyContent='start' mb={2} mt={15}>
+            <Breadcrumbs area-label='breadcrumb'>
+                <Link underline="hover" href="/">Home</Link>
+            
+               
+                <Typography  color='text.primary' >cart</Typography> 
+            </Breadcrumbs>
+
+           </Box>
+      
+     
+ 
     <hr />
     <div className='checkout_billing'>BILLING & SHIPPING</div>
     <div className='checkout_stack'>
     <Stack spacing={4}  sx={{ }} >
       <Stack direction='row'  spacing={2}>
-        <TextField onChange={handleChange} name='fname' value={detail.fname}  style={{width:'350px'}}   size='small' label='First Name' color="secondary"variant='outlined' />
+        <TextField onChange={handleChange}  name='fname' value={detail.fname}  style={{width:'350px'}}   size='small' label='First Name' color="secondary"variant='outlined' />
         <TextField onChange={handleChange} name='lname' value={detail.lname}  style={{width:'350px'}}   size='small' label='Last Name' color="secondary"variant='outlined' />
 
       </Stack>
@@ -114,19 +130,32 @@ const checkoutpay = () => {
        
       </Stack>
     </Stack>
-    <Container>
-      <Card >
-        <Typography variant='h6' component='div'>your product</Typography>
-      <Grid spacing={2}>
-        <Grid item xs={5} >
-          <p>product</p>
+    
+        <Paper sx={{margin:'20px 0'}}>
+        <Typography variant='h6'>your order</Typography>
+       <Grid container>
+        <Grid margin='20px' item xs={9}>
+          <Box>product</Box>
         </Grid>
-        <Grid item xs={5} >
-          <p>subtotal</p>
+        <Grid margin='20px' item xs={1}>
+          <Box>subTotal</Box>
         </Grid>
-      </Grid>
-      </Card>
-      </Container>
+        <Grid margin='20px' item xs={9}>
+          <Box>{cart[0].name} + {cart[0].select} * {cart[0].qty}</Box>
+        </Grid>
+        <Grid margin='20px' item xs={1}>
+          <Box>₹{cart[0].amount}</Box>
+        </Grid>
+        <Grid margin='20px' item xs={9}>
+          <Box>shiping</Box>
+        </Grid>
+        <Grid margin='20px' item xs={1}>
+          <Box>₹30</Box>
+        </Grid>
+        </Grid>
+        </Paper>
+     
+    
   <Stack sx={{marginTop:'20px'}} spacing={4}>
 
     <Button onClick={()=>handlePayment()}  variant='contained' color='primary' >Place Order</Button>
