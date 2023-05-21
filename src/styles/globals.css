@@ -497,7 +497,7 @@ width:4rem;
   .productimg{
     height: 100%; 
     width:  auto;
-    margin: 10% auto;
+    margin: 10% auto 3% auto;
   }
   .text-m{
     font-size: larger;
