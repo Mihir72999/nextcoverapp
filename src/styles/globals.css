@@ -492,7 +492,7 @@ width:4rem;
     display: inline;
     justify-content: center;
     width: 100%;
-    margin: 10% auto  ;
+    margin: 10% auto 5% auto;
   }
   .productimg{
     height: 100%; 
@@ -503,7 +503,7 @@ width:4rem;
     font-size: larger;
   }
   .final-img{
-    margin: 15% auto  ;
+    margin: 15% auto 5% auto;
    
   }
  
