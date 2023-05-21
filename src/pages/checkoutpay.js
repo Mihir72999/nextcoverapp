@@ -24,14 +24,10 @@ import { useSelector } from 'react-redux'
 const checkoutpay = () => {
   const [amounts , setAmounts] = useState(0)
   const [progress, setProgress] = useState(0)
-  const [datas ,setDatas] = useState([])
+ 
   const [detail , setDetail] = useState(initialState)
   const {isFetching } = useGetproductQuery()
   const {cart} = useSelector(state=>state.add)
-  const name =  cart.map(e=>e.name)
-  const amount =  cart.map(e=>e.amount)
-const qty = cart.map(e=>e.qty)
-const select = cart.map(e=>e.select)
 
 
   const handleChange = (e) =>{
@@ -42,13 +38,12 @@ const select = cart.map(e=>e.select)
   
   console.log(detail)
   useEffect(()=>{
-    setDatas(JSON.parse(localStorage.getItem('cart')))
    
     setAmounts(JSON.parse(localStorage.getItem('subtotal')))
     setProgress(100)
   },[])
   const handlePayment = async() => {
-    console.log(amounts)
+
    const {email , fname , phone} = detail
    
     let amount = amounts * 100
