@@ -1,6 +1,6 @@
-'use client'
-import {  TextField, Typography } from '@mui/material'
-import Link from 'next/link'
+
+import {  Box, Breadcrumbs, TextField, Typography , Link } from '@mui/material'
+
 import React, { useEffect, useState } from 'react'
 
 import LoadingBar from 'react-top-loading-bar'
@@ -8,8 +8,8 @@ import styles from '../styles/Home.module.css'
 import Image from 'next/image'
 import {useGetproductDataQuery} from '../../state/redux/razorpay'
 
+
 const Case = () => {
-  
 
   
   const {data , isFetching  , isError} = useGetproductDataQuery()
@@ -34,7 +34,16 @@ if(isError){
   return (
     <>
     <div className='home'>
-    <div className='navigate'><Link className='link' href='/'>HOME  </Link><p className='link'>/ silicon-soft-cover </p></div>
+    <Box   mt={2}>
+            <Breadcrumbs area-label='breadcrumb'>
+                <Link underline="hover" href="/">Home</Link>
+            
+               
+                <Typography color='text.primary' >case-soft-silicon-cover</Typography> 
+            </Breadcrumbs>
+
+           </Box>
+      
      <div><TextField value={value} onChange={(e)=>setValue(e.target.value)} variant='outlined'  label="serch here"  /></div> 
       </div> 
     <div className={styles.apple}>
@@ -44,7 +53,7 @@ if(isError){
           <div className={styles.gears}> 
         <Image width={100} height={150} src={e.image} loading='lazy' alt={e.price}/>
         </div>
-      <Link href={`/product/${e.name}`}>  <p className='desc'>{e.name.slice(0,30)}...</p></Link>
+      <Link underline="hover" color='text.secondary'  href={`/product/${e.name}`}> <p className='desc' > {e.name.slice(0,30)}...</p></Link>
         <Typography className={styles.typos} variant='h6'><del className={styles.del}>₹{e.price * 2 - 40}</del>₹{e.price}</Typography>
         </div>
     
@@ -55,5 +64,6 @@ if(isError){
   )
   
 }  
+
 
 export default Case
