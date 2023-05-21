@@ -24,6 +24,9 @@ const actionSlice = createSlice({
 
         toast.warn(`${action.payload.select} already exist`)
       }
+     }else{
+       state.cart.push(action.payload)
+       toast.success("your item has been added in cart!")
      } 
 
       const data = state.cart.reduce((item ,total)=>{
