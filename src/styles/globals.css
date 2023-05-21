@@ -74,6 +74,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  background-color: whitesmoke;
 }
 
 .desc{
@@ -354,13 +355,29 @@ font-size: 1rem;
   margin: 10px auto;
 
 }
+.cart_length{
+  display: flex;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  border-radius: 12px;
+  background-color: rgb(20, 233, 179);
+  color: #000;
+  
+}
 .checkout_stack{
   max-width: 35vw;
   justify-content: flex-start;
   margin: 10px auto;
 }
 .checkout_main{
-  max-width: 60vw;
+ 
+  max-width: 35vw;
   margin:  auto;
 
 }
@@ -378,17 +395,20 @@ font-size: 2rem;
 
 @media (width >= 400px) and (width < 900px) {
   .checkout_stack{
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    justify-content: flex-start;
-    margin: 10px auto;
+    display: inline;
+    
+    min-width: 65vw;
+    
+    margin: 10px 0;
   }
   .checkout{
     max-width: 100%;
   }
+  .checkout_main {
+    max-width: 65vw;
+  }
   .checkout_main hr{
-    width: 100%;
+    width: 65vw;
   }
   .checkout_billing{
     max-width: 100%;
@@ -518,17 +538,20 @@ width:4rem;
   
   }
   .checkout_stack{
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-    justify-content: flex-start;
-    margin: 10px auto;
+    display: inline;
+    /* flex-direction: column; */
+    max-width:65vw;
+  
+    margin: 10px 0;
   }
   .checkout{
     max-width: 100%;
   }
+  .checkout_main {
+    max-width: 65vw;
+  }
   .checkout_main hr{
-    width: 100%;
+    width: 65vw;
   }
   .checkout_billing{
     max-width: 100%;
