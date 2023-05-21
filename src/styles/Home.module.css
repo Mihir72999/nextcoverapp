@@ -120,7 +120,7 @@ color:white;
   }
 @media (width >= 400px) and (width < 900px){
     .img{
-       margin: 100px -20px;
+       margin: 100px 0;
         width: 100%;
     }
     .main{
