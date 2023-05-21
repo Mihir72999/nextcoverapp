@@ -1,21 +1,18 @@
-'use client'
-import { AppBar, Button, Container, Fab, Toolbar, Typography } from '@mui/material'
-import { CloseOutlined, MenuOutlined ,ShoppingCartRounded} from '@material-ui/icons'
-import Link from 'next/link'
 
-import React, { useEffect,  useState } from 'react'
+import {Link, AppBar, Button, Container, Fab, Toolbar, Typography } from '@mui/material'
+import { CloseOutlined, MenuOutlined ,ShoppingCartRounded} from '@material-ui/icons'
+import React, {   useState } from 'react'
+import { useSelector } from 'react-redux'
 
 
 const Navbar = () => {
+const {cart}= useSelector(state=>state.add)
   const [getclass, setGetclass] = useState('none')
-const[cart ,setCart] = useState()
 
-useEffect(()=>{
-  
-  setCart(JSON.parse(localStorage.getItem('length')))
-},[cart])
 
-console.log(cart)
+
+
+
 
 return (
     <>
@@ -29,7 +26,7 @@ return (
 <div style={{display:'flex', alignItems:'center'}} >
 <Button style={{color:'white' }} >Login</Button>
 <Button style={{color:'white',background:'navy'  }} variant='outlined' >Register</Button>
-<Link style={{color:'whitesmoke'}} href='/cart'><ShoppingCartRounded style={{background:'navy', color:'white' }} /><Fab size="small" color="secondary" >{cart}</Fab></Link>
+<Link href='/cart' style={{color:'white'}}><ShoppingCartRounded  style={{background:'navy', color:'white', margin:'0 10px' ,marginTop:'10px' }} /></Link>{cart.length > 0 && <div className='cart_length'>{cart.length}</div>}
 </div>
 </Toolbar>
 </Container>
