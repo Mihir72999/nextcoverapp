@@ -54,7 +54,7 @@ color:white;
 }
 .imglist{
     justify-content:center;
-    width:13vw;
+    width:250px;
     margin: 15px;
     box-shadow:0 10px 10px rgb(82, 92, 174)
 }
@@ -133,8 +133,8 @@ color:white;
         
     }
    .imglist{
-    width:85%;
-    margin: 15px 5px;
+    width: 180px;
+    margin: 15px;
   
    }
    
@@ -178,7 +178,7 @@ color:white;
         width: 80%;
     }
    .imglist{
-    width:90%;
+    width:200px;
    }
    .gear{
     width:auto;
@@ -201,11 +201,11 @@ color:white;
         grid-template-columns: repeat(3, 1fr);
        }
     .imglist{
-        width:75%;
-        margin: 15px 50px;
+       
+        margin: 20px;
        }
        .imgli{
-        width: 20vw;
+        width:  20vw;
     }
     
 }
