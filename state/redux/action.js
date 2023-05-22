@@ -15,19 +15,13 @@ const actionSlice = createSlice({
     addProduct(state, action) {
      const itemExist = state.cart.findIndex(e=>e.select === action.payload.select)
      if(itemExist >= 0){
-       if(state.cart[itemExist].qty < state.cart[itemExist].availableQty){
-         
-         state.cart[itemExist].qty += action.payload.qty
-        toast.warn(`${action.payload.select} * ${action.payload.qty} added qty`)
-
-      }else{
-
+  
         toast.warn(`${action.payload.select} already exist`)
-      }
-     }else{
+       } 
+     else{
        state.cart.push(action.payload)
        toast.success("your item has been added in cart!")
-     } 
+     }  
 
       const data = state.cart.reduce((item ,total)=>{
         const {amount } = total
@@ -39,7 +33,6 @@ const actionSlice = createSlice({
       try{
         
         localStorage.setItem('cart', JSON.stringify(state.cart))
-        
          localStorage.setItem('subtotal',JSON.stringify(data))
       
 
@@ -62,7 +55,7 @@ const actionSlice = createSlice({
       try{
         localStorage.setItem('cart', JSON.stringify(state.cart))
 
-       
+        
         localStorage.setItem('subtotal',JSON.stringify(datas))
       
       
