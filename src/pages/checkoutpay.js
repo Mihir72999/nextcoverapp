@@ -102,9 +102,9 @@ const checkoutpay = () => {
     <div className='checkout_billing'>BILLING & SHIPPING</div>
     <div className='checkout_stack'>
     <Stack spacing={4}  sx={{ }} >
-      <Stack direction='row'  spacing={2}>
-        <TextField onChange={handleChange}  name='fname' value={detail.fname}  style={{width:'350px'}}   size='small' label='First Name' color="secondary"variant='outlined' />
-        <TextField onChange={handleChange} name='lname' value={detail.lname}  style={{width:'350px'}}   size='small' label='Last Name' color="secondary"variant='outlined' />
+      <Stack direction='row'   spacing={2}>
+        <TextField onChange={handleChange}  name='fname' value={detail.fname}  style={{}}   fullWidth    size='small' label='First Name' color="secondary"variant='outlined' />
+        <TextField onChange={handleChange} name='lname' value={detail.lname}  style={{}}  fullWidth   size='small' label='Last Name' color="secondary"variant='outlined' />
 
       </Stack>
       <Typography>Country / india</Typography>
@@ -127,27 +127,30 @@ const checkoutpay = () => {
     </Stack>
     
         <Paper sx={{margin:'20px 0'}}>
-        <Typography variant='h6'>your order</Typography>
-       <Grid container>
-        <Grid margin='20px' item xs={9}>
-          <Box>product</Box>
-        </Grid>
-        <Grid margin='20px' item xs={1}>
-          <Box>subTotal</Box>
-        </Grid>
-        <Grid margin='20px' item xs={9}>
-          <Box>{cart[0].name} + {cart[0].select} * {cart[0].qty}</Box>
-        </Grid>
-        <Grid margin='20px' item xs={1}>
-          <Box>₹{cart[0].amount}</Box>
-        </Grid>
-        <Grid margin='20px' item xs={9}>
-          <Box>shiping</Box>
-        </Grid>
-        <Grid margin='20px' item xs={1}>
-          <Box>₹30</Box>
-        </Grid>
-        </Grid>
+      <Stack  >
+       <Typography margin='10px 20px'  >your order</Typography>
+       <Box margin='10px 0' justifyContent='space-between' display='flex'   direction='row'>
+        <Box width='25vw'    margin='0 20px'>product</Box> 
+        <Box width='25vw' textAlign='right' margin='0 20px'><b>subTOtal</b></Box>
+        </Box>
+
+      
+      { cart.map((e, i)=>(
+
+  <Box margin= '10px 0'  justifyContent='space-between' display='flex'  direction='row' key={i}>
+    <Box width='35vw' margin='0 20px'>{e.name}/{e.select}/{e.qty}</Box>
+        <Box width='15vw' margin='0 20px' textAlign='right'><b>₹{e.amount}</b></Box>
+        </Box>
+      ))   }  
+    <Box margin='10px 0' justifyContent='space-between' display='flex'   direction='row'>
+        <Box width='25vw'   margin='0 20px'>Shipping charge</Box> 
+        {amounts < 300 ? (<Box width='25vw' textAlign='right' margin='0 20px'>Flat Rate:<b> ₹50.00</b></Box>) : (<Box width='25vw' textAlign='right' margin='0 20px'><del>₹50.00</del></Box>) }
+        </Box>
+        <Box margin='10px 0' justifyContent='space-between' display='flex'   direction='row'>
+        <Box width='25vw'   margin='0 20px'>Total amount to pay</Box> 
+        <Box width='25vw' textAlign='right' margin='0 20px'><b>₹{amounts < 300 ? amounts + 50 : amounts}</b></Box>
+        </Box>
+       </Stack>
         </Paper>
      
     
