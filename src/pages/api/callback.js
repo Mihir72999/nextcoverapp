@@ -17,7 +17,7 @@ const callback = ( req, res) => {
           
 
       await  callbackSchema.create({razorpay_payment_id , razorpay_order_id , razorpay_signature})
-     res.redirect(`/redirectrazorpay/page?order_id=${razorpay_order_id}` , 200)
+     res.redirect(`redirectrazorpay/page?order_id=${razorpay_order_id}` , 200)
      }else{
        
        res.status(401).json({sucess:'false'})
