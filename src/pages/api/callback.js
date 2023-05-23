@@ -2,7 +2,7 @@
 import callbackSchema from '../../../schema/callback'
 import connectdb from '../../../middleware/connectdb'
 import crypto from "crypto"
-const callback = ( req, res) => {
+const callback = async( req, res) => {
   // connectdb()
   if(req.method === 'POST'){
     
@@ -16,7 +16,7 @@ const callback = ( req, res) => {
     if(isAuthanticate){
           
 
-      new  callbackSchema.create({razorpay_payment_id , razorpay_order_id , razorpay_signature})
+      await callbackSchema.create({razorpay_payment_id , razorpay_order_id , razorpay_signature})
      res.redirect(`redirectrazorpay/page?order_id=${razorpay_order_id}` , 200)
      }else{
        
