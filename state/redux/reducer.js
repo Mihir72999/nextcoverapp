@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import axios from 'axios'
-export const fetchData = createAsyncThunk('fetchData',async()=>{
-    const data = await axios.get(`/api/geproduct`)
+export const fetchData = createAsyncThunk('cart',async(body)=>{
+    const data = await axios.post(`/api/order` , body)
     return await data.data
 })
 const cartSlice = createSlice({
@@ -20,12 +20,8 @@ const cartSlice = createSlice({
        .addCase(fetchData.pending,(state)=>{
         state.isLoading = true
        })
-       .addCase(fetchData.fulfilled,(state,{payload}/*,product*/)=>{
-    //     if(product){
-       
-    //    payload.filter(e=>e.name == product)
-
-    //     }
+       .addCase(fetchData.fulfilled,(state,{payload})=>{
+    
         state.isLoading = false
         state.datas = payload
         state.isError = false
