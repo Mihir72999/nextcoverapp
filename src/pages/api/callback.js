@@ -16,7 +16,7 @@ const callback = ( req, res) => {
     if(isAuthanticate){
           
 
-      await  callbackSchema.create({razorpay_payment_id , razorpay_order_id , razorpay_signature})
+      new  callbackSchema.create({razorpay_payment_id , razorpay_order_id , razorpay_signature})
      res.redirect(`redirectrazorpay/page?order_id=${razorpay_order_id}` , 200)
      }else{
        
