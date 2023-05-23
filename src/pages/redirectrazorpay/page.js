@@ -8,7 +8,7 @@ const redirectrazorpay = () => {
   const data = router.query
   const id = data.order_id
   const goBack = () =>{
-    url = '/'
+    url = 'https://nextcoverapp.vercel.app/'
     window.location = url;
     }
   return (
