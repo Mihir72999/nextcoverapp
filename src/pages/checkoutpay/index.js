@@ -1,5 +1,5 @@
 import { Link , Button,Autocomplete, Stack, TextField, Typography,  Box, Grid , Breadcrumbs, Paper  } from '@mui/material'
-import {useGetproductQuery} from '../../state/redux/findproducts'
+import {useGetproductQuery} from '../../../state/redux/findproducts'
 import LoadingBar from 'react-top-loading-bar'
 import React, { useState , useEffect } from 'react'
 import Script from 'next/script'
