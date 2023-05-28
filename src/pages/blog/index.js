@@ -112,9 +112,7 @@ const handleChange = (e) =>{
 }
 export async function getServerSideProps(contaxt){
   try{
-    if(!mongoose.connections[0].readyState){
-      await mongoose.connect(process.env.MONGO_URI)
-}
+    
    
 
   let productdata = await Product.find()
