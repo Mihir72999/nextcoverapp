@@ -12,9 +12,7 @@ const cartSlice = createSlice({
      datas:[],
      isError:false
     },
-    reducers:{
-     
-    },
+    reducers:{ },
     extraReducers:builder=>{
        builder
        .addCase(fetchData.pending,(state)=>{
