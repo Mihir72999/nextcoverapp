@@ -6,6 +6,7 @@ import LoadingBar from 'react-top-loading-bar'
 import {useGetproductQuery} from '../../../state/redux/findproducts'
 import mongoose from 'mongoose'
 import Product from '../../../schema/product'
+import { useRouter } from 'next/router'
 
 const blog = ({ myItems }) => {
   const [getData , setGetData] = useState(myItems.apple)
@@ -13,11 +14,14 @@ const blog = ({ myItems }) => {
 const [progress, setProgress] = useState(0)
 const {isFetching } = useGetproductQuery()
 
+
     const apple =   getData?.brandmodel.map(e=>e)
     const samsung =   getSamsung?.brandmodel.map(e=>e)
    
    const {data} = useGlobalContext()
- useEffect(()=>{
+
+const router = useRouter()
+   useEffect(()=>{
 
   setProgress(100)
  },[])
@@ -25,7 +29,10 @@ if(isFetching){
     return <LoadingBar className='loadingbar' height={63}  color='#FFFFFF'  progress={progress} waitingTime={800} onLoaderFinished={() => setProgress(0)}/>
     
 }
-
+const handleChange = (e) =>{
+ 
+  router.push(`brandmodel?brandmodel=${e.target.value}`)
+}
   
     return (   
       <>
@@ -80,8 +87,9 @@ if(isFetching){
     value={getData.brand}
     label="Apple"
     color='primary'
-    // onChange={handleChange}
-  >
+    onChange={handleChange}
+   
+>
    { apple?.map((e,i) =>  <MenuItem  key={i} value={e}>{e}</MenuItem>)}
      </Select>
     </FormControl>
@@ -93,9 +101,9 @@ if(isFetching){
     value={getSamsung.brand}
     label="Samsung"
     color='primary'
-    // onChange={handleChange}
-  >
-   { samsung?.map((e,i) =>  <MenuItem  key={i} value={e}>{e}</MenuItem>)}
+    onChange={handleChange}
+  > 
+   { samsung?.map((e,i) =>  <MenuItem key={i} value={e} >{e}</MenuItem>)}
      </Select>
     </FormControl>
     </div>
@@ -103,9 +111,13 @@ if(isFetching){
   )
 }
 export async function getServerSideProps(contaxt){
-  if(!mongoose.connections[0].readyState){
-    await mongoose.connect(process.env.MONGO_URI)
-  }  let productdata = await Product.find()
+  try{
+    if(!mongoose.connections[0].readyState){
+      await mongoose.connect(process.env.MONGO_URI)
+}
+   
+
+  let productdata = await Product.find()
     
   let myItems = {}
   for(let item of  productdata){
@@ -127,11 +139,14 @@ export async function getServerSideProps(contaxt){
           }
       }
   }
-  
-
- return{
-  props:{myItems:JSON.parse(JSON.stringify(myItems)) }
- }   
+  return{
+   props:{myItems:JSON.parse(JSON.stringify(myItems)) }
+  }
+}catch(error){
+  console.log(error)
 }
+    
+}   
+
 
 export default blog
