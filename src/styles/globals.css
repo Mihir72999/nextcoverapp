@@ -74,7 +74,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: whitesmoke;
+
 }
 
 .desc{
@@ -192,14 +192,22 @@ summary:hover{
   /* main product page */
 .final{
   display:grid;
-grid-template-columns: repeat(2,1fr);
-margin: 10vh 20vw; 
+grid-template-columns: repeat(2 , 600px);
+margin-top: 100px;
+justify-content: center; 
 
 }
-.final-img{
-  display: flex;
-  flex-direction: row;  
+.font{
 
+ 
+  /* margin-top: -50px; */
+}
+.productimg{
+  margin: 10vh 0;
+}
+.final-img{
+  
+/* margin: 5vh 0; */
 }
 .mt-10{
   margin: 20px 0;
@@ -218,11 +226,11 @@ margin: 10vh 20vw;
   display: flex;
 }
 .h-10{
-  width: 30px;
+  width: auto;
  
 }
 .h-20{
-  width: 40px;
+  width: auto;
 }
 .gap{
   gap: 20px;
@@ -255,29 +263,36 @@ margin: 10vh 20vw;
   padding: 10px;
 }
 .cart_add{
-  margin: 20px 0;
+  
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
  
  }
  .cart_add p{
-  margin: 0 50px;
+
+  margin: 0;
  }
+ .cart_add span{
+  opacity: .8;
+  font-size:small;
+}
  .cart_add_Qty{
   display: flex;
   flex-direction: row;
-text-align: center;
+/* text-align: center; */
 align-items: center;
 gap: 10px;
 color: blue;
-width: 100px;
-margin: auto;
+
+
+margin: 20px 0;
  }
- .cart_add_Qty span{
+ 
+ .cart_add_Qty b{
   color:green;
   padding: 5px 10px;
   
-  border: 1px solid black;
+  border: 1px solid rgb(110, 107, 107);
 
  }
 .cart_price{
@@ -385,6 +400,7 @@ font-size: 1rem;
   width: 50vw;
   margin: auto;
 }
+
 .checkout p{
   font-size: larger;
 }
@@ -420,13 +436,13 @@ font-size: 2rem;
   .font button{
     margin: 0 50px;
   }
-  .cart_add{
+  /* .cart_add{
     flex-direction: column;
 
-  }
-  .cart_add_Qty{
+  } */
+  /* .cart_add_Qty{
     flex-direction: column;
-  }
+  } */
   .cart{
     width: 100%;
     font-size: x-small;
@@ -455,10 +471,10 @@ font-size: 2rem;
   font-size: small;
 }
 .h-20{
-  width:25px;
+  width:auto;
 }
 .h-10{
-  width:15px;
+  width:auto;
 }
   .navhead {
     cursor:pointer;
@@ -489,35 +505,39 @@ width:4rem;
     font-size: 1.5rem;
   }
   .final{
-    display: inline;
+    display: grid;
+    grid-template-columns: 500px;
     justify-content: center;
     width: 100%;
-    margin: 10% auto  ;
+    margin: 100px auto  30px auto ;
   }
   .productimg{
-    height: 100%; 
+    height: auto; 
     width:  auto;
-    margin: 10% auto;
+  margin-bottom: 0;
+  scale: 2; 
+    /* rotate: 270deg; */
+    
   }
   .text-m{
     font-size: larger;
   }
   .final-img{
-    margin: 15% auto  ;
+    margin: 0 auto 0  auto;
    
   }
  
   .font{
-    max-width: 60%;
-    margin:10% auto; 
-   
+    max-width: auto;
+    margin: auto; 
+   scale: 0.8;
   }
  
   .d-none{
     display: none;
   }
   .product-img{
-    max-width: 90%;
+    max-width: auto;
     margin: auto;
   }
   .home{
@@ -566,10 +586,12 @@ width:4rem;
   .cart_add{
     flex-direction: column;
 
+  } 
+  .cart_add span{
+    opacity: .8;
+    font-size:small;
   }
-  .cart_add_Qty{
-    flex-direction: column;
-  }
+ 
   .cart{
     width: 100%;
     font-size: x-small;
@@ -615,36 +637,39 @@ width:4rem;
 
   }
   .final{
-    display: inline;
+    display: grid;
+    grid-template-columns: 370px;
     justify-content: center;
     width: 100%;
-    margin: 10% auto  ;
+    height: auto;
+    margin: 200px auto 30px auto;  
   }
   .productimg{
     height: auto;
 
     width: auto;
-    margin: 10% auto ;
+    scale: 2;
+    margin: 0 auto ;
 
   }
   .final-img{
-    margin: 15% auto  ;
-   
+    margin: 0 auto  ;
+
   }
   .text-m{
     font-size: larger;
   }
   .font{
-    max-width: 60%;
-    margin:10% auto; 
+   scale: 0.7;
+    margin:0 auto; 
    
   }
   .d-none{
     display: none;
   }
   .product-img{
-    max-width: 90%;
-    margin: auto;
+    max-width: auto;
+    margin-bottom : 0;
   }
   .h-20{
     margin: 10px 0;
@@ -664,22 +689,22 @@ width:4rem;
 }
 .productimg{
  
-   
+   margin: 10vh auto 0;
   width:auto;
 }
 .final{
-  margin: 15vh -70px;
+  grid-template-columns: repeat(2,450px);
 }
 .font {
-  margin-top: 15%;
-  margin-left: -30px;
-  max-width: 90%;
+  margin: auto;
+  
+  
 }
 .final-img{
-  margin: 10%  10px  ;
+  /* margin: 0vh  10px  ; */
 }
 .product-img{
-  max-width: 50%;
-  margin: auto 60px;
+  /* max-width: 50%; */
+  /* margin: auto 60px; */
 }
 }
