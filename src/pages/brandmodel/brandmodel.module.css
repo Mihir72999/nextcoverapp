@@ -1,0 +1,100 @@
+.div{
+    display:grid;
+    max-width: 60vw;
+    margin: auto;
+    
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(6,180px);
+    
+}
+.button{
+border-radius:20px ;
+margin: 0 10px;
+}
+
+
+@media (width >= 400px) and (width < 600px) {
+    .div{
+        display:grid;
+        max-width: 95%;
+        margin: auto;
+        
+    }
+    .grid{
+        display: grid;
+        grid-template-columns: repeat(2,200px);
+        margin: auto;
+    }
+    .button{
+       
+        margin: 0 25px;
+        }
+    .content{
+        margin: 0 15px;
+    }
+} 
+
+@media  (width < 400px) {
+    .div{
+        display:grid;
+        max-width: 70%;
+        margin: auto;
+        
+    }
+    .grid{
+        display: grid;
+        grid-template-columns: repeat(1,200px);
+        margin: auto;
+    }
+    .button{
+       
+        margin: 0 25px;
+        }
+    .content{
+        margin: 0 15px;
+    }
+}
+@media (width >= 600px) and (width < 1000px) {
+    .div{
+        display:grid;
+        max-width: 95%;
+        margin: auto;
+        
+    }
+    .grid{
+        display: grid;
+        grid-template-columns: repeat(3,195px);
+        margin: auto;
+    }
+    .button{
+       
+        margin: 0 25px;
+        }
+    .content{
+        margin: 0 15px;
+    }
+} 
+@media (width >= 1000px) and (width < 1500px) {
+    .div{
+        display:grid;
+        max-width: 95%;
+        margin: auto;
+        
+    }
+    .grid{
+        display: grid;
+        grid-template-columns: repeat(5,195px);
+        margin: auto;
+    }
+    .button{
+       
+        margin: 0 25px;
+        }
+    .content{
+        margin: 0 15px;
+    }
+} 
+
