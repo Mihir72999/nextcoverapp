@@ -1,7 +1,7 @@
 
 import { Button, Typography , Link, Box, Breadcrumbs } from '@mui/material'
-
-import { Add,Remove, ArrowDownward } from '@material-ui/icons'
+import Style from './product.module.css'
+import { Add,Remove, ArrowDownward, Home, AddShoppingCartRounded } from '@mui/icons-material'
 import { useState ,useEffect } from 'react'
 import {useGetproductQuery} from '../../../state/redux/findproducts'
 import LoadingBar from 'react-top-loading-bar'
@@ -34,11 +34,10 @@ const a = app?.map(e=>e.brand)
 const apples = data && data?.myItems?.apple
 const samsungs = data && data?.myItems?.samsung
 
-
 useEffect(()=>{
   setProgress(100)
   },[100])
-   
+  
 if(isFetching){
  
   return <LoadingBar className='loadingbar' height={63}  color='#FFFFFF'  progress={progress} waitingTime={800} onLoaderFinished={() => setProgress(0)}/>
@@ -60,6 +59,10 @@ const handleClick = (e) =>{
     
   
   }
+}
+const router = useRouter()
+ const handleHome = () =>{
+router.push('/')
 }
   return (
     <>
@@ -93,7 +96,7 @@ const handleClick = (e) =>{
           <div className='d-flex gap '><div className='h-20 '><Image height={12} width={1} className='h-10' src='https://zapvi.in/wp-content/uploads/2021/04/shipping-and-delivery.png' alt=''/></div><p>Delivery in 5-7 working days</p></div>
        
       <div className='section'>
-          <select onChange={e=>setGetbrand(e.target.value)} >
+        <select onChange={e=>setGetbrand(e.target.value)} >
       <option required >select brand</option>
 
         <option  value={a} >{a}</option>
@@ -115,9 +118,14 @@ const handleClick = (e) =>{
       <ArrowDownward className='down'/>
 
       </div>
-      <div className="cart_add"><p>availableQty:<strong>{moredata.availableQty}</strong></p><div className='cart_add_Qty'><Remove style={{cursor:'pointer'}}   onClick={()=>setQty(qty > 1 ? qty - 1 : qty)}/><span>{qty}</span><Add style={{cursor:'pointer'}} onClick={()=>setQty(moredata.availableQty > qty ? qty + 1 : moredata.availableQty)} /></div></div>
-      <Button style={{ margin: '0 35%', borderRadius:'20px 20px 20px 20px',background: "#c6e2ff"}} onClick={()=>handleClick({ brand , image , amount , _id ,name, select ,availableQty , qty})}  color='primary'   variant='outlined'>Add To Cart</Button>
+      <div className="cart_add"><p>availablity:{" "}<strong>{moredata.availableQty}</strong>{" "}<span>in Stoke</span></p><div className='cart_add_Qty'><Remove style={{cursor:'pointer' , border:'1px solid rgb(110, 107, 107)' ,scale:'1.2'}}   onClick={()=>setQty(qty > 1 ? qty - 1 : qty)}/><b>{qty}</b><Add style={{cursor:'pointer', border:'0.5px solid rgb(110, 107, 107)',scale:'1.2'}} onClick={()=>setQty(moredata.availableQty > qty ? qty + 1 : moredata.availableQty)} /></div></div>
+      <Button className={Style.button} style={{ margin:'5px 0', borderRadius:'20px 20px 20px 20px',background: "#c6e2ff"}} onClick={()=>handleClick({ brand , image , amount , _id ,name, select ,availableQty , qty})}  color='primary'   variant='outlined'>Add To Cart</Button>
       </div>
+      </div>
+      <div className={Style.bottom}>
+        <div className={Style.home} title='go back to home'><Home onClick={handleHome} /></div>
+        <div className={Style.cart} title='Add to Shoping Cart'><AddShoppingCartRounded onClick={()=>handleClick({ brand , image , amount , _id ,name, select ,availableQty , qty})}/></div>
+
       </div>
       </>
   )
