@@ -1,6 +1,6 @@
 
 import { Box, Breadcrumbs, Button, Link, Typography } from "@mui/material"
-import { DeleteOutline } from "@material-ui/icons"
+import { DeleteOutline } from "@mui/icons-material"
 import { useRouter } from "next/router"
 import {useGetproductQuery} from '../../../state/redux/findproducts'
 import { useEffect, useState } from "react"
