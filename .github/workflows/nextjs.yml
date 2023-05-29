@@ -91,7 +91,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://nextcoverapp.vercel.app
     runs-on: ubuntu-latest
     needs: build
     steps:
