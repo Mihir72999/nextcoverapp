@@ -1,7 +1,7 @@
-import connectdb from "../../../middleware/connectdb"
+
 import Razorpay from "razorpay";
 const paymentcheckout = async(req ,res) => {
- connectdb()
+ 
 try{
 if(req.method === 'POST'){
     var instance = new Razorpay({
