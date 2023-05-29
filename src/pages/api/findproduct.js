@@ -3,7 +3,7 @@ import product from "../../../schema/product";
 
 
 const getProduct = async(req,res) =>{
-  connectdb()
+  
     try {
     let items = {}
       if(req.method === 'GET'){
@@ -30,4 +30,4 @@ const getProduct = async(req,res) =>{
       console.log(error)  
     }
 }
-export default getProduct
+export default connectdb(getProduct)
