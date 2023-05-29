@@ -29,7 +29,7 @@ if(isFetching){
      
 }
 if(isError){
-  return <div style={{margin:"30%"}}>check you connection or something went wrong</div>
+  return <div style={{margin:"30%"}}>check your data connection or something went wrong</div>
 }
   return (
     <>
