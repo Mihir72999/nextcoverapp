@@ -8,6 +8,7 @@ const getProduct = async(req,res) =>{
 
       if(req.method === 'GET'){
         const getProductData = await product.find()
+        res.setHeader('Cache-Control', 's-maxage=86400');
         res.status(200).json(getProductData)
         
           
