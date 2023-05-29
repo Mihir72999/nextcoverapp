@@ -8,7 +8,7 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-
+ 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -23,11 +23,16 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: false
-
+env:
+ MONGO_URI: mongodb+srv://mihir72999:Mihir72999@api.tv0cw9w.mongodb.net/data?retryWrites=true&w=majority
+ RAZORPAY_API_KEY_ID: rzp_test_aVX0BatHfyMi7T
+ RAZORPAY_API_KEY_SECRET: ZSUiyrPaQNbqY414SVv6oLPp
 jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    
+ 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
