@@ -6,7 +6,7 @@ const AppContext = createContext()
 const AppProvider = ({children})=>{
     const initialState={
         image:[
-          {image: " https://zapvi.in/wp-content/uploads/2021/02/APPLEIPHONEX1770-247x357.jpg" , href:'/blog',price:'120',name:''},
+          {image: " https://zapvi.in/wp-content/uploads/2021/02/APPLEIPHONEX1770-247x357.jpg" , href:'/',price:'120',name:''},
           {image: "https://zapvi.in/wp-content/uploads/2022/03/H-APPLEIPHONE12PRO-1714-247x357.jpg",href:'/case-',price:'130',name:'soft-silicon-cover'},
          {image:" https://zapvi.in/wp-content/uploads/2022/11/H-SAMSUNGGALAXYS22PLUS-2653-247x357.jpg",href:'/',price:'99',name:''},
          {image: "https://zapvi.in/wp-content/uploads/2021/03/SAMSUNGGALAXYS21PLUS1811-247x371.jpg",href:'/',price:'120',name:''},
