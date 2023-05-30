@@ -11,10 +11,7 @@ const connectdb= handler => async(req , res) =>{
      return handler(req,res)  
     } catch(error){
         console.log(error)
-    } finally{
-     mongoose.disconnect()
-     console.log("mongodb disconnected"))
-}     
+    } 
 }
 
 export default connectdb 
