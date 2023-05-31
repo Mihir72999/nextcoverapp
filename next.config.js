@@ -2,9 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    unoptimization
-    remotePatterns: [
     unoptimized: true,
+    remotePatterns: [
+    
       {
         protocol: 'https',
         hostname: 'zapvi.in',
