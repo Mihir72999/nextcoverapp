@@ -12,7 +12,7 @@ const nextConfig = {
       }
     ]
   },
-      output: 'npm export'
+      output: 'export'
     
 }
 module.exports = nextConfig
