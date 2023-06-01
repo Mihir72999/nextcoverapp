@@ -161,7 +161,7 @@ export async function getStaticProps({params} ) {
 
   try{
     if(!mongoose.connections[0].readyState){
-      await mongoose.connect(process.env.MONGO_URI)
+      await mongoose.connect(process.env.MONGODB_URI)
     }
 
   const name = params.product
