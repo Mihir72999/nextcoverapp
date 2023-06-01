@@ -134,7 +134,7 @@ export async function getStaticPaths(context) {
   try{
   
     if(!mongoose.connections[0].readyState){
-      await mongoose.connect(process.env.MONGO_URI)
+      await mongoose.connect(process.env.MONGODB_URI)
     }
 
   
